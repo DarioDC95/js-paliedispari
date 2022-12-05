@@ -27,8 +27,8 @@ while (index < array.length) {
         choice = (prompt("Scegli Pari o Dispari?")).toLowerCase();
     }
 };
-
 console.log(choice);
+
 // Inserisco il mio numero
 let player_num = parseInt(prompt("Scengli un numero da 1 a 5"));
 let beta = 0;
@@ -43,15 +43,26 @@ while (beta < 5) {
         player_num = parseInt(prompt("Scengli un numero da 1 a 5"));
     }
 };
+console.log("il numero del player è:" +player_num);
 
-console.log(player_num);
 // Definisco il numero casuale del computer
 let computer_num = random_num(1, 5);
+console.log("il numero del computer è:" +computer_num);
 
-console.log(computer_num);
 // Fare la somma
 somma = somma_num(player_num, computer_num);
+console.log(somma);
 
-console.log(somma)
 // Decidere chi ha vinto in base alla scelta effettuata tra Pari e Dispari
-
+if (choice === array[0] && somma % 2 === 0) {
+    console.log("player won")
+}
+else if (choice === array[1] && somma % 2 === 0) {
+    console.log("player lost")
+}
+else if (choice === array[0] && somma % 2 != 0) {
+    console.log("player lost")
+}
+else {
+    console.log("player won")
+}
