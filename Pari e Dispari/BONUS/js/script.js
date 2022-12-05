@@ -12,57 +12,50 @@ function somma_num(num1, num2) {
     return somma;
 };
 
-// Scelgo se Pari o Dispari
-let array = ["pari", "dispari"];
-let choice = (prompt("Scegli Pari o Dispari?")).toLowerCase();
-let index = 0;
+// definisco i pulsanti e il bottone
+let even_radio = document.getElementById("even");
+let odd_radio = document.getElementById("odd");
+let verifyButton = document.getElementById("verify");
 
-// verifico che sia inserito un valore valido
-while (index < array.length) {
-    if (array.includes(choice)) {
-        index = array.length
-    }
-    else {
-        alert("inserisci un valore valido");
-        choice = (prompt("Scegli Pari o Dispari?")).toLowerCase();
-    }
-};
-console.log(choice);
+// Prevedo l'evento
+verifyButton.addEventListener('click', function(){
+    let answerOK = document.getElementById('answer');
 
-// Inserisco il mio numero
-let player_num = parseInt(prompt("Scengli un numero da 1 a 5"));
-let beta = 0;
-
-// verifico che sia inserito un valore valido
-while (beta < 5) {
+    // Inserisco il mio numero
+    let player_num = parseInt(document.getElementById("mynumber").value);
+    
+    // verifico che sia inserito un valore valido
     if (player_num >= 1 && player_num <= 5) {
-        beta = 5;
+
+        // Definisco il numero casuale del computer
+        let computer_num = random_num(1, 5);
+        document.getElementById("computer").innerText = "Il computer ha estratto il n°" + " " +computer_num;
+        document.getElementById("computer").classList.remove('opacity-0')
+        
+        // Fare la somma
+        somma = somma_num(player_num, computer_num);
+        console.log(somma);
+        
+        // Decidere chi ha vinto in base alla scelta effettuata tra Pari e Dispari
+        if (even_radio.checked && somma % 2 === 0) {
+            answerOK.innerText = "player won"
+            answerOK.classList.remove('opacity-0');
+        }
+        else if (odd_radio.checked && somma % 2 === 0) {
+            answerOK.innerText = "player lost"
+            answerOK.classList.remove('opacity-0');
+        }
+        else if (even_radio.checked && somma % 2 != 0) {
+            answerOK.innerText = "player lost"
+            answerOK.classList.remove('opacity-0');
+        }
+        else {
+            answerOK.innerText = "player won"
+            answerOK.classList.remove('opacity-0');
+        }
     }
     else {
         alert("inserisci un valore valido");
-        player_num = parseInt(prompt("Scengli un numero da 1 a 5"));
     }
-};
-console.log("il numero del player è:" +player_num);
-
-// Definisco il numero casuale del computer
-let computer_num = random_num(1, 5);
-console.log("il numero del computer è:" +computer_num);
-
-// Fare la somma
-somma = somma_num(player_num, computer_num);
-console.log(somma);
-
-// Decidere chi ha vinto in base alla scelta effettuata tra Pari e Dispari
-if (choice === array[0] && somma % 2 === 0) {
-    console.log("player won")
-}
-else if (choice === array[1] && somma % 2 === 0) {
-    console.log("player lost")
-}
-else if (choice === array[0] && somma % 2 != 0) {
-    console.log("player lost")
-}
-else {
-    console.log("player won")
-}
+    
+})
