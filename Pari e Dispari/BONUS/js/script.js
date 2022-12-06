@@ -5,11 +5,9 @@ function random_num(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-let somma;
-
 function somma_num(num1, num2) {
-    somma = num1 + num2;
-    return somma;
+    let total = num1 + num2;
+    return total;
 };
 
 // definisco i pulsanti e il bottone
@@ -33,7 +31,7 @@ verifyButton.addEventListener('click', function(){
         document.getElementById("computer").classList.remove('opacity-0')
         
         // Fare la somma
-        somma = somma_num(player_num, computer_num);
+        let somma = somma_num(player_num, computer_num);
         console.log(somma);
         
         // Decidere chi ha vinto in base alla scelta effettuata tra Pari e Dispari
